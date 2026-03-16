@@ -1,0 +1,41 @@
+PHASE ROADMAP (The Big Picture)
+--------------------------------
+Phase 1 — Project Setup
+
+    Create Django project, app, environment, and folder structure.
+
+Phase 2 — Homepage + Base Layout
+
+    Create minimal UI and navigation.
+
+Phase 3 — Career Analysis Form
+
+    Collect user input (skills, interests, subjects, work style).
+
+Phase 4 — Machine Learning Model Training
+
+    Create dataset, train model, save .pkl.
+
+Phase 5 — ML Integration in Django
+
+    Load model and predict career paths.
+
+Phase 6 — Skill Gap Analyzer
+
+    Compare user skills with required career skills.
+
+Phase 7 — Roadmap Generator
+
+    Generate learning roadmap for predicted career.
+
+Phase 8 — Results Page
+
+    Show predictions + skill gap + roadmap.
+
+Phase 9 — UI Improvements
+
+    Minimal but clean UI.
+
+Phase 10 — Final Testing
+
+    Full system working end-to-end.
