@@ -11,10 +11,20 @@
     <hr>
 
     <h3>Top Career Matches</h3>
-
     <ul>
         {% for career, prob in predictions %}
             <li>{{ career }} - {{ prob|floatformat:2 }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Skill Gap for {{ top_career }}</h3>
+    <ul>
+        {% for skill in missing_skills %}
+            <li>{{ skill }}</li>
+        {% empty %}
+            <li>No Missing Skills |!Yay!|</li>
         {% endfor %}
     </ul>
 {% endblock %}
