@@ -44,6 +44,15 @@ def analyze(request):
 
             roadmap = generate_roadmap(top_career)
 
+            user_skill_list = [s.strip().lower() for s in skills.split(",")]
+            required_skill_list = [s.lower() for s in final_skills]
+            matched = [s for s in required_skill_list if s in user_skill_list]
+
+            if len(required_skill_list) > 0:
+                match_score = int((len(matched) / len(required_skill_list)) * 100)
+            else:
+                match_score = 0
+
             """user_data = {
                 'skills' : skills,
                 'interests' : interests,
@@ -60,6 +69,8 @@ def analyze(request):
                 'ai_missing' : ai_missing,
                 'ai_roadmap' : ai_roadmap,
                 'ai_suggestions' : ai_suggestions,
+
+                'match_score' : match_score,
 
                 'top_career' : top_career,
                 'data' : {

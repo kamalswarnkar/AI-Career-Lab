@@ -13,7 +13,7 @@
     </div>
 
     <div class="card">
-        <h3>Top Career Matches</h3>
+        <h3>Top Career Matches<span class="badge">AI Powered</span></h3>
         <ul>
             {% for career, prob in predictions %}
                 <li>{{ career }} - {{ prob|floatformat:2 }}</li>
@@ -30,6 +30,16 @@
                 <li>No data</li>
             {% endfor %}
         </ul>
+    </div>
+
+    <div class="card">
+        <h3>Skill Match Score</h3>
+
+        <p><strong>{{ match_score }}%</strong> match with required skills</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" data-width="{{ match_score|floatformat:0 }}"></div>
+        </div>
     </div>
 
     <div class="card">
@@ -66,4 +76,14 @@
     <a href="/analyze">
         <button>Analyze Again</button>
     </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const progressFill = document.querySelector(".progress-fill");
+
+            if (progressFill) {
+                progressFill.style.width = progressFill.dataset.width + "%";
+            }
+        });
+    </script>
 {% endblock %}
