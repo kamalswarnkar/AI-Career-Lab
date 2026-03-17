@@ -27,4 +27,15 @@
             <li>No Missing Skills |!Yay!|</li>
         {% endfor %}
     </ul>
+
+    <hr>
+
+    <h3>Learning Roadmap for {{ top_career }}</h3>
+    <ol>
+        {% for step in roadmap %}
+            <li>{{ step }}</li>
+        {% empty %}
+            <li>No Roadmap Available</li>
+        {% endfor %}
+    </ol>
 {% endblock %}

@@ -17,3 +17,57 @@ def compare_skills(user_skills, required_skills):
     missing = [skill for skill in required_skills if skill not in user_skills]
 
     return missing
+
+def generate_roadmap(career):
+    roadmaps = {
+        "Data Scientist": [
+            "Learn Python and Statistics",
+            "Study Data Analysis and Visualization",
+            "Learn Machine Learning",
+            "Build Projects and Work on Real Data"
+        ],
+        "ML Engineer": [
+            "Master Python and Data Structures",
+            "Learn Machine Learning Algorithms",
+            "Study Deep Learning and Frameworks (TensorFlow/PyTorch)",
+            "Deploy ML Models and Build Projects"
+        ],
+        "Backend Developer": [
+            "Learn Programming (Java/Python)",
+            "Understand APIs and Databases",
+            "Learn Frameworks (Django/Spring)",
+            "Build Scalable Backend Systems"
+        ],
+        "UI Designer": [
+            "Learn Design Principles",
+            "Master UI/UX Tools (Figma)",
+            "Work on Design Projects",
+            "Build Portfolio"
+        ],
+        "Cybersecurity Analyst": [
+            "Learn Networking Basics",
+            "Study Security Concepts",
+            "Practice Ethical Hacking",
+            "Get Certifications (CEH, Security+)"
+        ],
+        "Software Engineer": [
+            "Learn Programming (C++/Python)",
+            "Master Data Structures & Algorithms",
+            "Build Projects",
+            "Prepare for Interviews"
+        ],
+        "Data Analyst": [
+            "Learn Python or Excel",
+            "Study Data Visualization",
+            "Work on Real Datasets",
+            "Build Dashboard Projects"
+        ],
+        "DevOps Engineer": [
+            "Learn Linux and Networking",
+            "Understand CI/CD",
+            "Learn Docker and Kubernetes",
+            "Work on Cloud (AWS/GCP)"
+        ]
+    }
+
+    return roadmaps.get(career, [])
