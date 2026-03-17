@@ -24,7 +24,7 @@
     <div class="card">
         <h3>Skill Gap for {{ top_career }}</h3>
         <ul>
-            {% for skill in missing_skills %}
+            {% for skill in ai_missing %}
                 <li>{{ skill }}</li>
             {% empty %}
                 <li>No Missing Skills |!Yay!|</li>
@@ -35,12 +35,21 @@
     <div class="card">
         <h3>Learning Roadmap for {{ top_career }}</h3>
         <ol>
-            {% for step in roadmap %}
+            {% for step in ai_roadmap %}
                 <li>{{ step }}</li>
             {% empty %}
                 <li>No Roadmap Available</li>
             {% endfor %}
         </ol>
+    </div>
+
+    <div class="card">
+        <h3>AI Suggestions</h3>
+        <ul>
+            {% for tip in ai_suggestions %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
     <a href="/analyze">
