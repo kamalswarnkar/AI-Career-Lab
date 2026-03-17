@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .forms import CareerForm
 from .ml_utils import predict_career
 from .skill_analyzer import get_required_skills, compare_skills, generate_roadmap
-from .ai_utils import generate_ai_analysis
+from .ai_utils import generate_ai_analysis, generate_ai_skill_analysis
+from .data_utils import load_career_skills
 
 # Create your views here.
 def home(request):
@@ -24,11 +25,17 @@ def analyze(request):
 
             predictions = predict_career(combined_text)
 
+            skills_data = load_career_skills()
+
             top_career = predictions[0][0]
 
-            ai_data = generate_ai_analysis(skills, interests, top_career)
+            base_skills = skills_data.get(top_career, [])
 
-            ai_missing = ai_data.get("missing_skills", [])
+            ai_data = generate_ai_analysis(skills, interests, top_career)
+            ai_skill_data = generate_ai_skill_analysis(skills, base_skills, top_career)
+            
+            final_skills = ai_skill_data.get("final_skills", [])
+            ai_missing = ai_skill_data.get("missing_skills", [])
             ai_roadmap = ai_data.get("roadmap", [])
             ai_suggestions = ai_data.get("suggestions", [])
 
@@ -49,6 +56,7 @@ def analyze(request):
                 'missing_skills' : missing_skill,
                 'roadmap' : roadmap,
 
+                'final_skills' : final_skills,
                 'ai_missing' : ai_missing,
                 'ai_roadmap' : ai_roadmap,
                 'ai_suggestions' : ai_suggestions,

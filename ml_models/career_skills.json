@@ -1,0 +1,46 @@
+{
+  "Data Scientist": [
+    "python",
+    "statistics",
+    "machine learning",
+    "data analysis"
+  ],
+  "ML Engineer": [
+    "python",
+    "machine learning",
+    "deep learning",
+    "pytorch"
+  ],
+  "Backend Developer": [
+    "java",
+    "api",
+    "databases",
+    "system design"
+  ],
+  "UI Designer": [
+    "ui",
+    "ux",
+    "figma",
+    "creativity"
+  ],
+  "Cybersecurity Analyst": [
+    "networking",
+    "security",
+    "ethical hacking"
+  ],
+  "Software Engineer": [
+    "c++",
+    "dsa",
+    "problem solving"
+  ],
+  "Data Analyst": [
+    "python",
+    "excel",
+    "data visualization"
+  ],
+  "DevOps Engineer": [
+    "aws",
+    "docker",
+    "ci cd"
+  ]
+}
