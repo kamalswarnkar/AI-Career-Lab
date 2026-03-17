@@ -1,41 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Career Result</h2>
+    <div class="card">
+        <h2>Career Analysis Result</h2>
+    </div>
     
-    <h3>Your Profile</h3>
-    <p><strong>Skills:</strong>{{ data.skills }}</p>
-    <p><strong>Interests:</strong>{{ data.interests }}</p>
-    <p><strong>Subjects:</strong>{{ data.subjects }}</p>
-    <p><strong>Work Style:</strong>{{ data.work_style }}</p>
+    <div class="card">
+        <h3>Your Profile</h3>
+        <p><strong>Skills:</strong>{{ data.skills }}</p>
+        <p><strong>Interests:</strong>{{ data.interests }}</p>
+        <p><strong>Subjects:</strong>{{ data.subjects }}</p>
+        <p><strong>Work Style:</strong>{{ data.work_style }}</p>
+    </div>
 
-    <hr>
+    <div class="card">
+        <h3>Top Career Matches</h3>
+        <ul>
+            {% for career, prob in predictions %}
+                <li>{{ career }} - {{ prob|floatformat:2 }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-    <h3>Top Career Matches</h3>
-    <ul>
-        {% for career, prob in predictions %}
-            <li>{{ career }} - {{ prob|floatformat:2 }}</li>
-        {% endfor %}
-    </ul>
+    <div class="card">
+        <h3>Skill Gap for {{ top_career }}</h3>
+        <ul>
+            {% for skill in missing_skills %}
+                <li>{{ skill }}</li>
+            {% empty %}
+                <li>No Missing Skills |!Yay!|</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-    <hr>
+    <div class="card">
+        <h3>Learning Roadmap for {{ top_career }}</h3>
+        <ol>
+            {% for step in roadmap %}
+                <li>{{ step }}</li>
+            {% empty %}
+                <li>No Roadmap Available</li>
+            {% endfor %}
+        </ol>
+    </div>
 
-    <h3>Skill Gap for {{ top_career }}</h3>
-    <ul>
-        {% for skill in missing_skills %}
-            <li>{{ skill }}</li>
-        {% empty %}
-            <li>No Missing Skills |!Yay!|</li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h3>Learning Roadmap for {{ top_career }}</h3>
-    <ol>
-        {% for step in roadmap %}
-            <li>{{ step }}</li>
-        {% empty %}
-            <li>No Roadmap Available</li>
-        {% endfor %}
-    </ol>
+    <a href="/analyze">
+        <button>Analyze Again</button>
+    </a>
 {% endblock %}
