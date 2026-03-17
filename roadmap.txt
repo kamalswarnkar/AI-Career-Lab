@@ -36,6 +36,14 @@ Phase 9 — UI Improvements
 
     Minimal but clean UI.
 
-Phase 10 — Final Testing
+Phase 10 — LLM
 
     LLM Integration - OpenAI
+
+Phase 11 - Multiple ML Models
+
+    Multi-Model Comparison + Explainability
+
+Phase 12 - Fixing ML
+
+    Fixing ML model issues and dataset related issues
