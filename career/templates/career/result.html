@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Result</h2>
-
+    <h2>Career Result</h2>
+    
+    <h3>Your Profile</h3>
     <p><strong>Skills:</strong>{{ data.skills }}</p>
     <p><strong>Interests:</strong>{{ data.interests }}</p>
     <p><strong>Subjects:</strong>{{ data.subjects }}</p>
     <p><strong>Work Style:</strong>{{ data.work_style }}</p>
+
+    <hr>
+
+    <h3>Top Career Matches</h3>
+
+    <ul>
+        {% for career, prob in predictions %}
+            <li>{{ career }} - {{ prob|floatformat:2 }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

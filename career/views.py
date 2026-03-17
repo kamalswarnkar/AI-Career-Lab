@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import CareerForm
+from .ml_utils import predict_career
 
 # Create your views here.
 def home(request):
@@ -17,12 +18,25 @@ def analyze(request):
             subjects = form.cleaned_data['subjects']
             work_style = form.cleaned_data['work_style']
 
-            user_data = {
+            combined_text = f"{skills} {interests} {subjects} {work_style}"
+
+            predictions = predict_career(combined_text)
+
+            """user_data = {
                 'skills' : skills,
                 'interests' : interests,
                 'subjects' : subjects,
                 'work_style' : work_style,
-            }
+            }"""
 
-            return render(request, 'career/result.html', {'data' : user_data})
+            return render(request, 'career/result.html', {
+                'predictions' : predictions[:3],
+                'data' : {
+                    'skills' : skills,
+                    'interests' : interests,
+                    'subjects' : subjects,
+                    'work_style' : work_style,
+                }
+            })
+        
     return render(request, 'career/analyze.html', {'form' : form})
