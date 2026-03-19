@@ -1,12 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
+<section class="card form-shell">
+    <p class="eyebrow">Profile Input</p>
     <h2>Career Analysis</h2>
+    <p class="section-note">Add comma-separated skills and concise preferences for better recommendations.</p>
 
-    <form method="post">
+    <form method="post" class="analysis-form">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        <div class="form-grid">
+            <div class="field-wrap">
+                <label for="{{ form.skills.id_for_label }}">Skills</label>
+                {{ form.skills }}
+                <small>Example: python, sql, machine learning</small>
+            </div>
 
-        <button type="submit">Analyze Career</button>
+            <div class="field-wrap">
+                <label for="{{ form.interests.id_for_label }}">Interests</label>
+                {{ form.interests }}
+                <small>Example: AI products, research, data storytelling</small>
+            </div>
+
+            <div class="field-wrap">
+                <label for="{{ form.subjects.id_for_label }}">Favorite Subjects</label>
+                {{ form.subjects }}
+                <small>Example: mathematics, statistics, computer science</small>
+            </div>
+
+            <div class="field-wrap">
+                <label for="{{ form.work_style.id_for_label }}">Preferred Work Style</label>
+                {{ form.work_style }}
+                <small>Example: analytical, collaborative, independent</small>
+            </div>
+        </div>
+
+        <div class="cta-row">
+            <button type="submit" class="btn btn-primary">Analyze Career</button>
+            <a href="/" class="btn btn-ghost">Back to Home</a>
+        </div>
     </form>
+</section>
 {% endblock %}

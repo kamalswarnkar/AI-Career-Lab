@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>AI Career Lab</h1>
-    <p>Discover career paths using AI-powered analysis.</p>
-    <a href="/analyze">
-        <button>Start Career Analysis</button>
-    </a>
+<section class="hero card">
+    <p class="eyebrow">AI + ML Career Intelligence</p>
+    <h1>Find your best-fit career path with structured analysis.</h1>
+    <p>
+        Enter your profile once. Get ranked role predictions, required skills,
+        skill-gap insights, and an actionable learning roadmap.
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">Career Prediction</span>
+        <span class="pill">Skill Gap Detection</span>
+        <span class="pill">Roadmap Generation</span>
+    </div>
+
+    <div class="cta-row">
+        <a href="/analyze/" class="btn btn-primary">Start Analysis</a>
+    </div>
+</section>
 {% endblock %}

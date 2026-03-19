@@ -5,11 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Career Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'career/style.css' %}">
+
+    <!-- Fallback styles if static files are not served in current environment -->
+    <style>
+        body { margin: 0; font-family: 'Manrope', sans-serif; background: #f1f7ff; color: #0f172a; }
+        .shell { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
+        .site-header { position: sticky; top: 0; background: rgba(248,252,255,.9); border-bottom: 1px solid #dbe5f0; }
+        .site-header .shell { min-height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #0f172a; text-decoration: none; }
+        .site-nav { display: flex; gap: .9rem; }
+        .site-nav a { color: #334155; text-decoration: none; font-weight: 600; }
+        .page-content { padding: 1.8rem 0 2rem; }
+        .card { background: #fff; border: 1px solid #dbe5f0; border-radius: 16px; padding: 1.1rem; margin-bottom: 1rem; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
+        .hero h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #075985; font-weight: 700; margin: 0; }
+        .section-note, p { color: #5b6577; }
+        .pill-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+        .pill { background: #e0f2fe; color: #075985; border-radius: 999px; padding: .35rem .7rem; font-size: .82rem; font-weight: 600; }
+        .btn, button { display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; border: 1px solid transparent; padding: .66rem 1rem; font-weight: 700; text-decoration: none; cursor: pointer; }
+        .btn-primary, button { background: linear-gradient(135deg,#0ea5e9,#0369a1); color: #fff; }
+        .btn-ghost { background: #fff; color: #0f172a; border-color: #cbd5e1; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+        .analysis-form .form-grid, .grid-layout { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .95rem; }
+        .field-wrap { display: flex; flex-direction: column; gap: .42rem; }
+        .field-wrap label { font-weight: 700; }
+        .field-wrap small { color: #64748b; font-size: .78rem; }
+        input[type="text"] { width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; padding: .66rem .75rem; background: #f8fbff; }
+        .clean-list, .roadmap-list { margin: 0; padding-left: 1rem; }
+        .chip-list { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0; padding: 0; }
+        .chip-list li { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; border-radius: 999px; padding: .34rem .65rem; font-size: .82rem; font-weight: 600; }
+        .badge { background: #dcfce7; color: #166534; border-radius: 999px; padding: .2rem .55rem; font-size: .72rem; }
+        .progress-bar { width: 100%; height: 12px; border-radius: 999px; background: #e2e8f0; overflow: hidden; }
+        .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg,#22c55e,#16a34a); transition: width .7s ease; }
+        .site-footer { border-top: 1px solid #dbe5f0; }
+        .site-footer .shell { min-height: 54px; display: flex; align-items: center; }
+        @media (max-width: 860px) { .analysis-form .form-grid, .grid-layout { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="bg-orb orb-left"></div>
+    <div class="bg-orb orb-right"></div>
+
+    <header class="site-header">
+        <div class="shell">
+            <a class="brand" href="/">AI Career Lab</a>
+            <nav class="site-nav">
+                <a href="/">Home</a>
+                <a href="/analyze/">Analyze</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="shell page-content">
         {% block content %}{% endblock %}
-    </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <p>Built for smarter career decisions.</p>
+        </div>
+    </footer>
 </body>
 </html>

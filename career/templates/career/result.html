@@ -1,29 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="card">
-        <h2>Career Analysis Result</h2>
-    </div>
-    
+<section class="card">
+    <p class="eyebrow">Results Dashboard</p>
+    <h2>Career Analysis Result</h2>
+    <p class="section-note">Top suggested path: <strong>{{ top_career }}</strong></p>
+</section>
+
+<section class="grid-layout">
     <div class="card">
         <h3>Your Profile</h3>
-        <p><strong>Skills:</strong>{{ data.skills }}</p>
-        <p><strong>Interests:</strong>{{ data.interests }}</p>
-        <p><strong>Subjects:</strong>{{ data.subjects }}</p>
-        <p><strong>Work Style:</strong>{{ data.work_style }}</p>
+        <ul class="clean-list">
+            <li><strong>Skills:</strong> {{ data.skills }}</li>
+            <li><strong>Interests:</strong> {{ data.interests }}</li>
+            <li><strong>Subjects:</strong> {{ data.subjects }}</li>
+            <li><strong>Work Style:</strong> {{ data.work_style }}</li>
+        </ul>
     </div>
 
     <div class="card">
-        <h3>Top Career Matches<span class="badge">AI Powered</span></h3>
-        <ul>
+        <h3>Skill Match Score</h3>
+        <p><strong>{{ match_score }}%</strong> alignment with required skills</p>
+        <div class="progress-bar">
+            <div class="progress-fill" data-width="{{ match_score|floatformat:0 }}"></div>
+        </div>
+    </div>
+</section>
+
+<section class="grid-layout">
+    <div class="card">
+        <h3>Top Career Matches <span class="badge">AI Powered</span></h3>
+        <ul class="clean-list">
             {% for career, prob in predictions %}
-                <li>{{ career }} - {{ prob|floatformat:2 }}</li>
+                <li>
+                    <span>{{ career }}</span>
+                    <strong>{{ prob|floatformat:2 }}</strong>
+                </li>
             {% endfor %}
         </ul>
     </div>
 
     <div class="card">
         <h3>Required Skills</h3>
-        <ul>
+        <ul class="chip-list">
             {% for skill in final_skills %}
                 <li>{{ skill }}</li>
             {% empty %}
@@ -31,59 +49,55 @@
             {% endfor %}
         </ul>
     </div>
+</section>
 
-    <div class="card">
-        <h3>Skill Match Score</h3>
-
-        <p><strong>{{ match_score }}%</strong> match with required skills</p>
-
-        <div class="progress-bar">
-            <div class="progress-fill" data-width="{{ match_score|floatformat:0 }}"></div>
-        </div>
-    </div>
-
+<section class="grid-layout">
     <div class="card">
         <h3>Skill Gap for {{ top_career }}</h3>
-        <ul>
+        <ul class="clean-list">
             {% for skill in ai_missing %}
                 <li>{{ skill }}</li>
             {% empty %}
-                <li>No Missing Skills |!Yay!|</li>
+                <li>No missing skills. Nice work.</li>
             {% endfor %}
         </ul>
     </div>
 
     <div class="card">
         <h3>Learning Roadmap for {{ top_career }}</h3>
-        <ol>
+        <ol class="roadmap-list">
             {% for step in ai_roadmap %}
                 <li>{{ step }}</li>
             {% empty %}
-                <li>No Roadmap Available</li>
+                <li>No roadmap available</li>
             {% endfor %}
         </ol>
     </div>
+</section>
 
-    <div class="card">
-        <h3>AI Suggestions</h3>
-        <ul>
-            {% for tip in ai_suggestions %}
-                <li>{{ tip }}</li>
-            {% endfor %}
-        </ul>
+<section class="card">
+    <h3>AI Suggestions</h3>
+    <ul class="clean-list">
+        {% for tip in ai_suggestions %}
+            <li>{{ tip }}</li>
+        {% empty %}
+            <li>No suggestions available</li>
+        {% endfor %}
+    </ul>
+
+    <div class="cta-row">
+        <a href="/analyze/" class="btn btn-primary">Analyze Again</a>
+        <a href="/" class="btn btn-ghost">Go Home</a>
     </div>
+</section>
 
-    <a href="/analyze">
-        <button>Analyze Again</button>
-    </a>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const progressFill = document.querySelector(".progress-fill");
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const progressFill = document.querySelector(".progress-fill");
-
-            if (progressFill) {
-                progressFill.style.width = progressFill.dataset.width + "%";
-            }
-        });
-    </script>
+        if (progressFill) {
+            progressFill.style.width = progressFill.dataset.width + "%";
+        }
+    });
+</script>
 {% endblock %}
