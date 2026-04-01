@@ -11,6 +11,18 @@ client = OpenAI(
     base_url = "https://openrouter.ai/api/v1"
 )
 
+
+def _safe_json_from_response(content, fallback):
+    json_match = re.search(r'\{.*\}', content or "", re.DOTALL)
+
+    if json_match:
+        try:
+            return json.loads(json_match.group())
+        except Exception:
+            pass
+
+    return fallback
+
 def generate_ai_analysis(skills, interests, career):
     prompt = f"""
 You are an expert career advisor.
@@ -34,31 +46,29 @@ Rules:
 - Only JSON
 """
     
-    response = client.chat.completions.create(
-        model="openai/gpt-4o-mini",
-        messages=[
-            {"role" : "user",
-             "content" : prompt}
-        ]
-    )
-
-    content =  response.choices[0].message.content
-
-    print("AI RAW OUTPUT:", content) # debugging
-
-    json_match = re.search(r'\{.*\}', content, re.DOTALL)
-    
-    if json_match:
-        try:
-            return json.loads(json_match.group())
-        except:
-            pass
-
-    return {
+    fallback = {
         "missing_skills" : [],
         "roadmap" : [],
-        "suggestions" : ["AI parsing failed"]
+        "suggestions" : ["AI suggestions are unavailable right now. The core career analysis still works."]
     }
+
+    if not os.getenv("OPENROUTER_API_KEY"):
+        return fallback
+
+    try:
+        response = client.chat.completions.create(
+            model="openai/gpt-4o-mini",
+            messages=[
+                {"role" : "user",
+                 "content" : prompt}
+            ]
+        )
+        content = response.choices[0].message.content
+        print("AI RAW OUTPUT:", content)
+        return _safe_json_from_response(content, fallback)
+    except Exception as exc:
+        print("AI analysis failed:", exc)
+        return fallback
 
 def generate_ai_skill_analysis(user_skills, base_skills, career):
     prompt = f"""
@@ -89,27 +99,25 @@ Rules:
 - Only JSON
 """
 
-    response = client.chat.completions.create(
-        model="openai/gpt-4o-mini",  
-        messages=[
-            {"role": "user",
-             "content": prompt}
-        ]
-    )
-
-    content = response.choices[0].message.content
-
-    print("AI RAW OUTPUT:", content) # debugging
-
-    json_match = re.search(r'\{.*\}', content, re.DOTALL)
-
-    if json_match:
-        try:
-            return json.loads(json_match.group())
-        except:
-            pass
-
-    return {
-        "final_skills": [],
+    fallback = {
+        "final_skills": base_skills,
         "missing_skills": []
     }
+
+    if not os.getenv("OPENROUTER_API_KEY"):
+        return fallback
+
+    try:
+        response = client.chat.completions.create(
+            model="openai/gpt-4o-mini",  
+            messages=[
+                {"role": "user",
+                 "content": prompt}
+            ]
+        )
+        content = response.choices[0].message.content
+        print("AI RAW OUTPUT:", content)
+        return _safe_json_from_response(content, fallback)
+    except Exception as exc:
+        print("AI skill analysis failed:", exc)
+        return fallback

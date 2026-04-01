@@ -1,21 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="hero card">
-    <p class="eyebrow">AI + ML Career Intelligence</p>
-    <h1>Find your best-fit career path with structured analysis.</h1>
-    <p>
-        Enter your profile once. Get ranked role predictions, required skills,
-        skill-gap insights, and an actionable learning roadmap.
-    </p>
+<section class="hero-panel">
+    <div class="hero-copy card">
+        <p class="eyebrow">Minimal AI Guidance</p>
+        <h1>See where your current strengths can take you next.</h1>
+        <p>
+            AI Career Lab turns your skills, interests, and work preferences into a focused
+            recommendation flow with role matches, missing skills, and a practical roadmap.
+        </p>
 
-    <div class="pill-row">
-        <span class="pill">Career Prediction</span>
-        <span class="pill">Skill Gap Detection</span>
-        <span class="pill">Roadmap Generation</span>
+        <div class="pill-row">
+            <span class="pill">Career fit</span>
+            <span class="pill">Skill gaps</span>
+            <span class="pill">Learning path</span>
+        </div>
+
+        <div class="cta-row">
+            <a href="/analyze/" class="btn btn-primary">Start analysis</a>
+            <a href="/analyze/" class="btn btn-ghost">Try the planner</a>
+        </div>
     </div>
 
-    <div class="cta-row">
-        <a href="/analyze/" class="btn btn-primary">Start Analysis</a>
-    </div>
+    <aside class="hero-sidebar card">
+        <p class="eyebrow">What you get</p>
+        <div class="feature-stack">
+            <div class="feature-item">
+                <span class="feature-kicker">01</span>
+                <div>
+                    <h3>Clear role ranking</h3>
+                    <p>Compare strong-fit career directions instead of guessing from scratch.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-kicker">02</span>
+                <div>
+                    <h3>Focused skill advice</h3>
+                    <p>Spot the most useful gaps so your next steps stay small and realistic.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-kicker">03</span>
+                <div>
+                    <h3>Useful in dark mode too</h3>
+                    <p>A dedicated low-glare theme keeps the interface calm without losing contrast.</p>
+                </div>
+            </div>
+        </div>
+    </aside>
 </section>
 {% endblock %}

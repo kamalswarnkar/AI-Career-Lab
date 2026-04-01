@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="card">
-    <p class="eyebrow">Results Dashboard</p>
-    <h2>Career Analysis Result</h2>
-    <p class="section-note">Top suggested path: <strong>{{ top_career }}</strong></p>
+<section class="card results-hero">
+    <div>
+        <p class="eyebrow">Results Dashboard</p>
+        <h2>Career analysis result</h2>
+        <p class="section-note">Top suggested path: <strong>{{ top_career }}</strong></p>
+    </div>
+    <div class="metric-chip">
+        <span>Match score</span>
+        <strong>{{ match_score }}%</strong>
+    </div>
 </section>
 
 <section class="grid-layout">
@@ -29,7 +35,7 @@
 <section class="grid-layout">
     <div class="card">
         <h3>Top Career Matches <span class="badge">AI Powered</span></h3>
-        <ul class="clean-list">
+        <ul class="clean-list ranked-list">
             {% for career, prob in predictions %}
                 <li>
                     <span>{{ career }}</span>
@@ -77,7 +83,7 @@
 
 <section class="card">
     <h3>AI Suggestions</h3>
-    <ul class="clean-list">
+    <ul class="clean-list compact-list">
         {% for tip in ai_suggestions %}
             <li>{{ tip }}</li>
         {% empty %}
